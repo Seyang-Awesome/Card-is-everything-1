@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68f71ec9ac89b1429ff52ef3e6e6653, type: 3}
+  m_Name: StopShooting
+  m_EditorClassIdentifier: 
+  info:
+    ID: 0
+    buffName: "\u963B\u585E\u5C04\u51FB"
+    description: "\u9690\u5F0F\u5730\u963B\u6B62\u73A9\u5BB6\u5C04\u51FB(\u8FD9\u4E2A\u63CF\u8FF0\u4E0D\u8BE5\u88AB\u770B\u5230\u7684!)"
+    icon: {fileID: 0}
+    maxStack: 1
+    downStack: 1
+    shouldShow: 0
+    keepForever: 0
+    tickTime: 0.1

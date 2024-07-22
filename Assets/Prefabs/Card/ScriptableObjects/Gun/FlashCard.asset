@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c60713e8386cff469b108c4dfe08d52, type: 3}
+  m_Name: FlashCard
+  m_EditorClassIdentifier: 
+  info:
+    pattern: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    baseCostMana: 2
+    cardName: "\u95EA\u8EAB"
+    description: "\u7ACB\u523B\u5411\u9F20\u6807\u65B9\u5411\u77AC\u79FB\u4E00\u6BB5\u8DDD\u79BB\uFF0C\u63A5\u4E0B\u67655\u79D2\u5185\u5B50\u5F39\u5177\u6709\u7A7F\u900F"
+  maxDistance: 5
+  duration: 5

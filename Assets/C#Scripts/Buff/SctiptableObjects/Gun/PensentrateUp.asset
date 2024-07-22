@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bab8aa020fe6a74e81cbd006f926203, type: 3}
+  m_Name: PensentrateUp
+  m_EditorClassIdentifier: 
+  info:
+    ID: 3
+    buffName: "\u7A7F\u900F\u63D0\u5347"
+    description: "\u5B50\u5F39\u589E\u52A0\u7B49\u540C\u4E8E\u5C42\u6570\u7684\u7A7F\u900F"
+    icon: {fileID: 0}
+    maxStack: 1000
+    downStack: 1
+    shouldShow: 1
+    keepForever: 1
+    tickTime: 0.1

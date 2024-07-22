@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a33a34dca7e29f41afbe0a9ffcec012, type: 3}
+  m_Name: InGamePrefabs
+  m_EditorClassIdentifier: 
+  cardFace: {fileID: 848912730419240250, guid: dfb06b1c60bee5e4db35adcc1d13d020, type: 3}
+  gunBullet: {fileID: 4931050711391496854, guid: 4376984928a5bc54493bc4c4cb52dc7c, type: 3}
+  arrowBullet: {fileID: 0}
+  cardParticle: {fileID: 1745516268768394046, guid: 5a1c99de432bab84192b417f7ef77aa2, type: 3}
+  gunBulletParticle: {fileID: 3229115122339200427, guid: e4d90dd6b8ee7c547bf58c92702fc073, type: 3}
+  flashParticle: {fileID: 7532556282575824407, guid: e9d84709b87a6ac4f8063d370c5c3702, type: 3}
+  simpleEnemy: {fileID: 6731333781274679340, guid: 157578e97df236f46a4a513985b3765c, type: 3}
