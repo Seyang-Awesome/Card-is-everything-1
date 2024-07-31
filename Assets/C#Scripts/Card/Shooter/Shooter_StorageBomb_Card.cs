@@ -24,7 +24,7 @@ public class Shooter_StorageBomb_Card : Card
         //发射数枚增加了偏转，速度加快但存在时间低的子弹
         for (int i = 0; i < shootCount; i++)
         {
-            var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBullet);
+            var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBulletDependency);
             info.ModifyRandomAngle(maxOffsetAngle);
             info.ModifySpeedMultiplier(Random.Range(0,maxSpeedModifier));
             info.ModifyLifeTimeMultiplier(-cutLifeTime);

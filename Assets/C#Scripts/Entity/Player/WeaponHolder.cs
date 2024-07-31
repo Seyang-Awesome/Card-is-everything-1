@@ -12,25 +12,27 @@ using UnityEngine;
 /// </summary>
 public class WeaponHolder : ModifiedMonobehaviour
 {
-    private Player player;
+    private PlayerInfo info;
+    private Transform playerTransform;
 
     //private float lastShootTime = 0; //记录上次射击的时间
     //private int stuckCounter = 0; //阻塞射击行为的计数器，每当一个阻塞信息输入时，计数器加一，借此判断当前是否有阻塞
     //private bool IsInterval => Time.time - lastShootTime < player.Info.Interval; //判定攻击是否在冷却
     //private bool CanShoot => stuckCounter <= 0; //判定攻击是否被阻塞
 
-    public void Init(Player player)
+    public void Init(PlayerInfo info, Transform playerTransform)
     {
-        this.player = player;
+        this.info = info;
+        this.playerTransform = playerTransform;
 
         //正常打出的子弹，默认添加上一下三个修正
         //1.为其添加等同于玩家攻击力的伤害 2.将其基准位置设置为武器位置 3.为其添加等同于玩家准度的随机偏移值
         EventManager.Instance.onBulletGenerate += (info) =>
         {
-            info.ModifyDamage(player.Info.Strength);
+            info.ModifyDamage(this.info.Strength);
             info.SetBase(transform.position, transform.rotation);
-            info.ModifyRandomAngle(player.Info.Accuracy);
-            info.ModifyHitback(player.Info.Hitback);
+            info.ModifyRandomAngle(this.info.Accuracy);
+            info.ModifyHitback(this.info.Hitback);
         };
 
         /*
@@ -56,7 +58,7 @@ public class WeaponHolder : ModifiedMonobehaviour
     private void UpdateTarget()
     {
         Vector2 mouse = MyExtensions.MousePosition;
-        Vector2 dir = mouse - (Vector2)player.transform.position;
+        Vector2 dir = mouse - (Vector2)playerTransform.position;
         transform.right = dir;
     }
 

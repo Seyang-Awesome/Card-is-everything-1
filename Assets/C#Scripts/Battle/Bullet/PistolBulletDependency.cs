@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 标准的子弹类，可以尝试做别的子弹，但我现在就做了这一个~
 /// </summary>
-public class PistolBullet : Bullet
+public class PistolBulletDependency : BulletDependency
 {
     private int pensentrateCount = 0;
 

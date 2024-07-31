@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerController
 {
-    #region 字段
-    private Player player;
+    private PlayerInfo info;
     private Rigidbody2D rb;
-    #endregion
 
-    public PlayerController(Player player)
+    public PlayerController(PlayerInfo info, Rigidbody2D rb)
     {
-        this.player = player;
-        this.rb = player.GetComponent<Rigidbody2D>();
+        this.info = info;
+        this.rb = rb;
     }
 
     public void OnUpdate()
@@ -30,6 +28,6 @@ public class PlayerController
         Vector2 dir = new Vector2(hor, ver);
         dir = Vector2.ClampMagnitude(dir, 1.0f);
 
-        rb.velocity = player.Info.Speed * dir;
+        rb.velocity = info.Speed * dir;
     }
 }

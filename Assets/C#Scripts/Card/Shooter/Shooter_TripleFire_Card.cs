@@ -22,7 +22,7 @@ public class Shooter_TripleFire_Card : Card
 
     private void Fire()
     {
-        var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBullet);
+        var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBulletDependency);
         GameLogicManager.Instance.Shoot(info);
     }
 }

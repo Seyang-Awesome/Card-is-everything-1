@@ -24,7 +24,7 @@ public class GameLogicManager : Singleton<GameLogicManager>
     public void Shoot(BulletInfo info)
     {
         ModifyBulletInfo(info); //发送事件修正信息
-        var b = PoolManager.Instance.GetGameObject(info.Bullet);
+        var b = PoolManager.Instance.GetGameObject(info.BulletDependency);
         b.Launch(info);
     }
 
@@ -33,7 +33,7 @@ public class GameLogicManager : Singleton<GameLogicManager>
     /// </summary>
     public void Shoot()
     {
-        var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBullet);
+        var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBulletDependency);
         Shoot(info);
     }
 

@@ -12,9 +12,9 @@ public class PlayerStatManager
 
     private float infiniteTimer;
 
-    public void Init(Player player)
+    public PlayerStatManager(PlayerInfo info)
     {
-        info = player.Info;
+        this.info = info;
     }
 
     public void OnUpdate()

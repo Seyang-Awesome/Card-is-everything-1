@@ -16,7 +16,7 @@ public enum BulletAbility
 public class BulletInfo
 {
     #region 数据字段
-    private Bullet bullet;  //子弹组件
+    private BulletDependency bulletDependency;  //子弹组件
     private int ability;    //武器具有的能力
     private float damage = 1; //子弹伤害
     private float damageMultiplier = 1; //伤害倍率
@@ -35,7 +35,7 @@ public class BulletInfo
     #endregion
 
     #region 外部修改时调用函数
-    public void SetBullet(Bullet bullet) {  this.bullet = bullet; }
+    public void SetBullet(BulletDependency bulletDependency) {  this.bulletDependency = bulletDependency; }
     public void AddAbility(BulletAbility ability) { this.ability |= (int)ability; }
     public void ModifyDamage(float amount) { damage += damage + amount; }
     public void ModifyDamageMultiplier(float amount) { damageMultiplier = damageMultiplier + amount;  }
@@ -78,7 +78,7 @@ public class BulletInfo
 
     #region 子弹逻辑运作阶段调用的数值
     public bool HasAbility(BulletAbility ability) { return (this.ability & (int)ability) != 0; }
-    public Bullet Bullet => bullet; 
+    public BulletDependency BulletDependency => bulletDependency; 
     public float Damage => Mathf.Max(1, damage) * Mathf.Max(0.1f, damageMultiplier);
     public float Speed => Mathf.Max(1f, speed) * Mathf.Max(0.1f, speedMultiplier);
     public float LifeTime => Mathf.Max(0.1f,lifeTime) * Mathf.Max(0.01f, lifeTimeMultiplier); //子弹的最小存在时长: 0.1s
@@ -98,9 +98,9 @@ public class BulletInfo
     #endregion
 
     #region 构造函数
-    public BulletInfo(Bullet bullet)
+    public BulletInfo(BulletDependency bulletDependency)
     {
-        this.bullet = bullet;
+        this.bulletDependency = bulletDependency;
     }
     public BulletInfo() { }
     #endregion

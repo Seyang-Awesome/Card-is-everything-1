@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-[CreateAssetMenu(menuName = "ScriptableObjects/Player/PlayerInfo", fileName = "PlayerInfo")]
-public class PlayerInfo: ScriptableObject
+public class PlayerInfo: EntityInfoBase
 {
     #region 常量值
     private readonly static float minHealth = 1; //当最大生命值被降低时，可能达到的最小值 
@@ -16,14 +15,14 @@ public class PlayerInfo: ScriptableObject
 
     #region 字段与属性
     [Header("标准属性")] //一些一般不会发生太多变动的属性
-    [SerializeField] private float maxHealth = 10;        // 最大生命
-    [SerializeField] private float maxMana = 10;          // 最大法力
-    [SerializeField] private float maxExp = 100;         // 经验条上限,下一次升级所需经验
-    [SerializeField] private float speed = 5;            // 移动速度
-    [SerializeField] private float strength = 5;         // 力量
-    [SerializeField] private float accuracy = 10;        // 精确度，代表每次打出时可能偏移的角度量
-    [SerializeField] private float hitback = 1;         //击退
-    [SerializeField] private int level = 1;            // 等级
+    [SerializeField] private float maxHealth;        // 最大生命
+    [SerializeField] private float maxMana;          // 最大法力
+    [SerializeField] private float maxExp;         // 经验条上限,下一次升级所需经验
+    [SerializeField] private float speed;            // 移动速度
+    [SerializeField] private float strength;         // 力量
+    [SerializeField] private float accuracy;        // 精确度，代表每次打出时可能偏移的角度量
+    [SerializeField] private float hitback;         //击退
+    [SerializeField] private int level;            // 等级
 
     [Header("动态属性")] //一些在战斗中不断变化的属性
     [SerializeField] private float exp = 0;              // 经验值
@@ -31,9 +30,28 @@ public class PlayerInfo: ScriptableObject
     [SerializeField] private float currentMana;
 
     [Header("其它属性")] //一些其它的属性
-    [SerializeField] private float manaPerSec = 1f;      // 每秒回复蓝量
-    [SerializeField] private float healthPerSec = 0f;    // 每秒回复生命值
-    [SerializeField] private float drawInterval = 2f;     // 抽牌间隔
+    [SerializeField] private float manaPerSec;      // 每秒回复蓝量
+    [SerializeField] private float healthPerSec;    // 每秒回复生命值
+    [SerializeField] private float drawInterval;     // 抽牌间隔
+    
+    public Action<PlayerInfo> onInfoChanged;
+
+    public void Init(PlayerInfoConfig config)
+    {
+        maxHealth = config.maxHealth;
+        maxMana = config.maxMana;
+        maxExp = config.maxExp;
+        speed = config.speed;
+        strength = config.strength;
+        accuracy = config.accuracy;
+        hitback = config.hitback;
+        level = config.level;
+
+        healthPerSec = config.healthPerSec;
+        manaPerSec = config.manaPerSec;
+        drawInterval = config.drawInterval;
+    }
+    
 
     public float MaxHealth
     {
@@ -185,9 +203,5 @@ public class PlayerInfo: ScriptableObject
         CurrentMana -= amount;
     }
 
-    #endregion
-
-    #region 其它
-    public Action<PlayerInfo> onInfoChanged;
     #endregion
 }

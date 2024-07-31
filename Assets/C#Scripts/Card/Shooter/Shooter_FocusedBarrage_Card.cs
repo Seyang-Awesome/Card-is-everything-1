@@ -21,7 +21,7 @@ public class Shooter_FocusedBarrage_Card : Card
 
     private void Fire()
     {
-        var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBullet);
+        var info = new BulletInfo(DataManager.Instance.prefabCenter.gunBulletDependency);
         info.ModifyRandomAngle(-30); //大幅度提高子弹精度
         info.ModifySpeedMultiplier(0.5f);
         GameLogicManager.Instance.Shoot(info);

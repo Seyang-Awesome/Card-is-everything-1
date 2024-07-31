@@ -4,18 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class EnemyInfo
-{
-    public float health = 10;
-    public float speed = 1;
-    public float attack = 2;
-}
-
 /// <summary>
 /// 敌人脚本，这部分写的比较粗糙，仅作为实现测试用
 /// </summary>
-public class Enemy : ModifiedMonobehaviour, IPoolable
+public class Enemy : ModifiedMonobehaviour, IPoolable, IEntity
 {
     [SerializeField]
     protected EnemyInfo info;
@@ -100,5 +92,10 @@ public class Enemy : ModifiedMonobehaviour, IPoolable
     public void OnGetFromPool()
     {
         Spawn();
+    }
+
+    public EntityInfoBase GetInfo()
+    {
+        return info;
     }
 }
