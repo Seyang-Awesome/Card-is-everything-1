@@ -5,17 +5,17 @@ using UnityEngine;
 /// <summary>
 /// 标准的子弹类，可以尝试做别的子弹，但我现在就做了这一个~
 /// </summary>
-public class PistolBulletDependency : BulletDependency
+public class SingleBullet : Bullet
 {
     private int pensentrateCount = 0;
 
-    public override void Launch(BulletInfo info)
+    public void Launch(BulletInfo info)
     {
         base.Launch(info);
         Rb.velocity = transform.right * info.Speed;
     }
 
-    protected override void OnHitEnemy(Enemy e)
+    protected void OnHitEnemy(Enemy e)
     {
         base.OnHitEnemy(e);
 

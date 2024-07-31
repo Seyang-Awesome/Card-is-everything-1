@@ -4,29 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public abstract class BulletDependency : MonoBehaviour
+/// <summary>
+/// 子弹的依赖脚本，仅负责移动，检测碰撞逻辑
+/// </summary>
+public sealed class BulletDependency : MonoBehaviour
 {
-    public int targetLayer;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private TrailRenderer trail;
+    private IEntity source;
+    private int targetLayer;
+    
+    public event Action<HitInfo> onHit;
+    // public Action<HitInfo> onHitWall;
 
-    public event Action<BulletDependency> onSpawn;
-    public event Action<BulletDependency> onDespawn;
-    public event Action<EntityDependency> onHitEntity;
-    public event Action onHitWall;
-    
-    public void Spawn(Vector2 velocity, int targetLayer)
+    public void Init(IEntity source, int targetLayer)
     {
+        this.source = source;
         this.targetLayer = targetLayer;
-        ScheduleManager.Instance.AddSchedule(new Schedule(info.LifeTime, () => { if (gameObject.activeSelf) OnDisappear(); }));
-        onSpawn?.Invoke(this);
     }
-    
-    public void Despawn()
+
+    public void ResetSelf()
     {
-        PoolManager.Instance.PushGameObject(gameObject); 
-        EffectManager.Instance.GenerateParticle(DataManager.Instance.prefabCenter.gunBulletParticle, transform.position, Quaternion.identity);
-        onDespawn?.Invoke(this);
+        onHit = null;
     }
     
     public void SetVelocity(Vector2 velocity)
@@ -43,30 +42,18 @@ public abstract class BulletDependency : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.TryGetComponent(typeof(EntityDependency), out Component entityComponent)) return;
-        EntityDependency entity = entityComponent as EntityDependency;
-        if ((targetLayer & (int)entity.entityLayer) != 0)
+        EntityDependency entityDependency = entityComponent as EntityDependency;
+        if ((targetLayer & (int)entityDependency.entityLayer) != 0)
         {
-            onHitEntity?.Invoke(entity);
+            // TODO：完善HitInfo的碰撞角度
+            onHit?.Invoke(new HitInfo(rb.velocity, source, entityDependency.entity));
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
-            onHitWall?.Invoke();
+            onHit?.Invoke(new HitInfo(rb.velocity, true));
     }
-    
-    public virtual void Launch(BulletInfo info) //发射初始化函数
-    {
-        //设定两个延时事件: 一定时间后摧毁子弹并创建粒子效果，这里并不完善，可以优化
-        
-        this.info = info;
-        transform.position = info.Position;
-        transform.rotation = info.Rotation;
-        transform.localScale = info.Scale;
-        Trail.startWidth = Consts.bulletTrailWidth * info.Scale.x;
-        Trail.Clear();
-    }
-    
 }
 
